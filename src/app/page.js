@@ -87,12 +87,12 @@ export default function BirthdayApp() {
           transition={{ duration: 0.5 }}
           className="absolute inset-0 flex flex-col items-center justify-center text-center text-xl font-semibold text-rose-500"
         >
-          <p className="mb-1">It's your <span className="font-bold">20th birthday</span> and our third together.</p>
+          <p className="mb-1">It&apos;s your <span className="font-bold">20th birthday</span> and our third together.</p>
           <p>Thanks for being with me in all the winds and shadows.</p>
           <span className={love.className}><p className="text-3xl text-pink-600 mt-6">You are my heart, my soul, and every single block that makes me.</p></span>
           <p className="mb-6 text-4xl">💖</p>
-          <p>It's been an incredible journey with you, love.</p>
-          <p>The chapters of our life have been incredible, haven't they?</p>
+          <p>It&apos;s been an incredible journey with you, love.</p>
+          <p>The chapters of our life have been incredible, haven&apos;t they?</p>
           <motion.button
             onClick={startBookTransition}
             whileHover={{ scale: 1.1 }}
