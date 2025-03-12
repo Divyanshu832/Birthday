@@ -8,12 +8,12 @@ import PageFlipBook from "../components/PageFlipBook";
 import { Love_Light, Love_Ya_Like_A_Sister } from "next/font/google";
 
 const poppins = Love_Light({
-  weight: ['400'],
+  weight: ["400"],
   subsets: ["latin"],
 });
 
 const love = Love_Ya_Like_A_Sister({
-  weight: ['400'],
+  weight: ["400"],
   subsets: ["latin"],
 });
 
@@ -21,15 +21,24 @@ const loveQuotes = [
   "You are my today and all of my tomorrows.",
   "My heart is and always will be yours.",
   "You are my sun, my moon, and all my stars.",
-  "Every love story is beautiful, but ours is my favorite."
+  "Every love story is beautiful, but ours is my favorite.",
 ];
 
 export default function BirthdayApp() {
-  const [stage, setStage] = useState(1);
+  const [stage, setStage] = useState(0); // Start at locked state
   const [musicPlayed, setMusicPlayed] = useState(false);
   const [showPetals, setShowPetals] = useState(false);
 
   const sound = new Howl({ src: ["/music.mp3"], volume: 1 });
+
+  const handleUnlock = () => {
+    const password = prompt("Enter the secret password:");
+    if (password === "Iaauuu") {
+      setStage(1); // Move to the next stage
+    } else {
+      alert("Ayee Intruder!! Get Out..");
+    }
+  };
 
   const startSequence = () => {
     setShowPetals(true);
@@ -58,7 +67,25 @@ export default function BirthdayApp() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden text-center bg-pink-100 flex flex-col items-center justify-center">
-      {showPetals && <RosePetals />}
+      {showPetals && <RosePetals />} {/* Rose petals animation */}
+
+      {stage === 0 && (
+        <div>
+           <h1 className="text-5xl font-bold text-pink-500 drop-shadow-lg mb-6">
+            <span className={poppins.className}>Hey Love...</span>
+          </h1>
+          <p className="mt-2 text-xl text-red-600">Ayee Wait... Are you even...??</p>
+          <p className="mt-2 text-xl text-red-600 mb-3">Who I think you are 🤔...</p>
+        <motion.button
+          onClick={handleUnlock}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="px-6 py-3 text-lg font-semibold text-white bg-red-500 rounded-full shadow-lg transition-all hover:bg-red-600"
+        >        
+          Verify 🤨
+        </motion.button>
+        </div>
+      )}
 
       {stage === 1 && (
         <motion.div
@@ -67,7 +94,9 @@ export default function BirthdayApp() {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center"
         >
-          <h1 className="text-5xl font-bold text-pink-500 drop-shadow-lg mb-6"><span className={poppins.className}>Happiest Birthday Love 💖</span></h1>
+          <h1 className="text-5xl font-bold text-pink-500 drop-shadow-lg mb-6">
+            <span className={poppins.className}>Happiest Birthday Love 💖</span>
+          </h1>
           <p className="mt-2 text-xl text-gray-700">Have something for you...</p>
           <motion.button
             onClick={startSequence}
@@ -87,9 +116,15 @@ export default function BirthdayApp() {
           transition={{ duration: 0.5 }}
           className="absolute inset-0 flex flex-col items-center justify-center text-center text-xl font-semibold text-rose-500"
         >
-          <p className="mb-1">It&apos;s your <span className="font-bold">20th birthday</span> and our third together.</p>
+          <p className="mb-1">
+            It&apos;s your <span className="font-bold">20th birthday</span> and our third together.
+          </p>
           <p>Thanks for being with me in all the winds and shadows.</p>
-          <span className={love.className}><p className="text-3xl text-pink-600 mt-6">You are my heart, my soul, and every single block that makes me.</p></span>
+          <span className={love.className}>
+            <p className="text-3xl text-pink-600 mt-6">
+              You are my heart, my soul, and every single block that makes me.
+            </p>
+          </span>
           <p className="mb-6 text-4xl">💖</p>
           <p>It&apos;s been an incredible journey with you, love.</p>
           <p>The chapters of our life have been incredible, haven&apos;t they?</p>
